@@ -1,0 +1,11 @@
+name: NoobLocker
+version: '${project.version}'
+main: ru.deelter.nooblocker.NoobLocker
+api-version: 1.17
+authors: [ DeelTer ]
+description: Lock noobs on your server
+website: https://vk.com/deelter
+
+commands:
+  nooblocker:
+    aliases: [ nooblock ]

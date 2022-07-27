@@ -1,0 +1,2 @@
+# NoobLocker
+ Lock noob players
