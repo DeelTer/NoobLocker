@@ -1,5 +1,5 @@
 # NoobLocker
- prevent noob players from grief
+Prevents unwanted actions of players (grief)
  
 ## Permissions
 * nooblocker.bypass - removes all restrictions
