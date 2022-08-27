@@ -7,21 +7,6 @@ Prevents unwanted actions of players (grief)
 
 ## Config file
 ```yml
-####################################################
-#                                                  #
-#                |   NOOB_LOCKER  |                #
-#                                                  #
-####################################################
-
-#Contact me:
-#
-#VK: vk.com/deelter
-#TWITTER: twitter.com/roma200315
-#YOUTUBE: youtube.com/channel/UCRACU2JfOfClrlEHImv5pYw
-#GITHUB: github.com/DeelTer
-#
-#DISCORD: DeelTer#4782
-
 # До тех пор, пока игрок не наиграет в онлайне
 # определённое время (указывается ниже) - ему будут запрещены
 # указанные в 'actions' взаимодействия
@@ -55,4 +40,4 @@ restricted-areas:
 
 messages:
   warn: "Вы не можеет сделать это"
-  ```
+```
