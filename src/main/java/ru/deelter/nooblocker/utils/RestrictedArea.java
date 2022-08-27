@@ -1,4 +1,4 @@
-package ru.deelter.nooblocker.regions;
+package ru.deelter.nooblocker.utils;
 
 import org.bukkit.Location;
 

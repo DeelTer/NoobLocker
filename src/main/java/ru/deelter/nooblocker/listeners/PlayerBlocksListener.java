@@ -12,22 +12,25 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import ru.deelter.nooblocker.NoobManager;
-import ru.deelter.nooblocker.configs.LockerConfig;
+import ru.deelter.nooblocker.LockerConfig;
+import ru.deelter.nooblocker.NoobLocker;
+import ru.deelter.nooblocker.managers.NoobManager;
 
 public class PlayerBlocksListener implements Listener {
+
+    private static final LockerConfig CONFIG = NoobLocker.getLockerConfig();
 
     @EventHandler(ignoreCancelled = true)
     public void onPlaceBedNether(@NotNull BlockPlaceEvent event) {
         Block block = event.getBlock();
         if (block.getWorld().getEnvironment() == World.Environment.NORMAL) return;
         if (!MaterialTags.BEDS.isTagged(block)) return;
-        if (!LockerConfig.isEnablePlaceNetherBed()) return;
+        if (!CONFIG.isEnablePlaceNetherBed()) return;
 
         Player player = event.getPlayer();
         if (NoobManager.hasFullAccess(player)) return;
 
-        player.sendActionBar(LockerConfig.getWarnMessageAsComp());
+        player.sendActionBar(CONFIG.getWarnMessageAsComp());
         event.setCancelled(true);
     }
 
@@ -37,12 +40,12 @@ public class PlayerBlocksListener implements Listener {
         if (block == null) return;
         if (block.getWorld().getEnvironment() == World.Environment.NORMAL) return;
         if (!MaterialTags.BEDS.isTagged(block)) return;
-        if (!LockerConfig.isEnableExplodeNetherBed()) return;
+        if (!CONFIG.isEnableExplodeNetherBed()) return;
 
         Player player = event.getPlayer();
         if (NoobManager.hasFullAccess(player)) return;
 
-        Component warnMessage = LockerConfig.getWarnMessageAsComp();
+        Component warnMessage = CONFIG.getWarnMessageAsComp();
         player.sendActionBar(warnMessage);
         event.setCancelled(true);
     }
@@ -51,12 +54,12 @@ public class PlayerBlocksListener implements Listener {
     public void onPlaceTnt(@NotNull BlockPlaceEvent event) {
         Block block = event.getBlock();
         if (block.getType() != Material.TNT) return;
-        if (!LockerConfig.isEnablePlaceTnt()) return;
+        if (!CONFIG.isEnablePlaceTnt()) return;
 
         Player player = event.getPlayer();
         if (NoobManager.hasFullAccess(player)) return;
 
-        player.sendActionBar(LockerConfig.getWarnMessageAsComp());
+        player.sendActionBar(CONFIG.getWarnMessageAsComp());
         event.setCancelled(true);
     }
 
@@ -67,16 +70,16 @@ public class PlayerBlocksListener implements Listener {
         if (usedItem == null) return;
 
         boolean forbidden = switch (usedItem.getType()) {
-            case FLINT_AND_STEEL -> LockerConfig.isEnableUseFlintAndSteel();
-            case END_CRYSTAL -> LockerConfig.isEnablePlaceCrystal();
-            case LAVA_BUCKET -> LockerConfig.isEnableUseLavaBucket();
+            case FLINT_AND_STEEL -> CONFIG.isEnableUseFlintAndSteel();
+            case END_CRYSTAL -> CONFIG.isEnablePlaceCrystal();
+            case LAVA_BUCKET -> CONFIG.isEnableUseLavaBucket();
             default -> false;
         };
 
         if (!forbidden) return;
         if (NoobManager.hasFullAccess(player)) return;
 
-        player.sendActionBar(LockerConfig.getWarnMessageAsComp());
+        player.sendActionBar(CONFIG.getWarnMessageAsComp());
         event.setCancelled(true);
     }
 }

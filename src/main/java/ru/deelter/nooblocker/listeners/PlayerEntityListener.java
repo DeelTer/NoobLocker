@@ -7,20 +7,22 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.jetbrains.annotations.NotNull;
-import ru.deelter.nooblocker.NoobManager;
-import ru.deelter.nooblocker.configs.LockerConfig;
+import ru.deelter.nooblocker.NoobLocker;
+import ru.deelter.nooblocker.managers.NoobManager;
+import ru.deelter.nooblocker.LockerConfig;
 
 public class PlayerEntityListener implements Listener {
+    
+    private static final LockerConfig CONFIG = NoobLocker.getLockerConfig();
 
     @EventHandler
     public void onDamageVillagers(@NotNull EntityDamageByEntityEvent event) {
         if (!(event.getEntity() instanceof Villager)) return;
         if (!(event.getDamager() instanceof Player player)) return;
-        if (!LockerConfig.isEnableKillVillagers()) return;
-
+        if (!CONFIG.isEnableKillVillagers()) return;
         if (NoobManager.hasFullAccess(player)) return;
 
-        player.sendActionBar(LockerConfig.getWarnMessageAsComp());
+        player.sendActionBar(CONFIG.getWarnMessageAsComp());
         event.setCancelled(true);
     }
 
@@ -28,11 +30,11 @@ public class PlayerEntityListener implements Listener {
     public void onDamagePlayers(@NotNull EntityDamageByEntityEvent event) {
         if (!(event.getEntity() instanceof Player)) return;
         if (!(event.getDamager() instanceof Player player)) return;
-        if (!LockerConfig.isEnableDamagePlayers()) return;
+        if (!CONFIG.isEnableDamagePlayers()) return;
 
         if (NoobManager.hasFullAccess(player)) return;
 
-        player.sendActionBar(LockerConfig.getWarnMessageAsComp());
+        player.sendActionBar(CONFIG.getWarnMessageAsComp());
         event.setCancelled(true);
     }
 
@@ -40,11 +42,11 @@ public class PlayerEntityListener implements Listener {
     public void onKillCrystal(@NotNull EntityDamageByEntityEvent event) {
         if (!(event.getEntity() instanceof EnderCrystal)) return;
         if (!(event.getDamager() instanceof Player player)) return;
-        if (!LockerConfig.isEnableExplodeCrystal()) return;
+        if (!CONFIG.isEnableExplodeCrystal()) return;
 
         if (NoobManager.hasFullAccess(player)) return;
 
-        player.sendActionBar(LockerConfig.getWarnMessageAsComp());
+        player.sendActionBar(CONFIG.getWarnMessageAsComp());
         event.setCancelled(true);
     }
 }

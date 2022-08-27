@@ -38,10 +38,10 @@ actions:
 
 restricted-areas:
   ad-hub:
-    radius: 100
+    radius: 120
     location: "world_nether,0,0,0"
   spawn:
-    radius: 150
+    radius: 120
     location: "world,0,0,0"
 
 messages:

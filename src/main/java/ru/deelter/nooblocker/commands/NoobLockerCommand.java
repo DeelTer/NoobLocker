@@ -8,7 +8,6 @@ import org.bukkit.command.TabExecutor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.deelter.nooblocker.NoobLocker;
-import ru.deelter.nooblocker.configs.LockerConfig;
 
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class NoobLockerCommand implements TabExecutor {
         if (args.length < 1) return true;
         if (args[0].equalsIgnoreCase("reload")) {
             sender.sendMessage("Конфиг перезагружен");
-            LockerConfig.reload(NoobLocker.getInstance());
+            NoobLocker.getLockerConfig().reload();
             return true;
         }
 
